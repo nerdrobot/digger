@@ -3,6 +3,25 @@ description: Manage terraform collaboration
 author: Digger
 
 inputs:
+  setup-oci:
+    description: Setup OCI
+    required: false
+    default: 'false'
+  oci-cli-user:
+    description: OCI CLI user ocid
+    required: false
+  oci-cli-tenancy:
+      description: OCI CLI tenancy ocid
+      required: false
+  oci-cli-fingerprint:
+      description: OCI CLI fingerprint
+      required: false
+  oci-cli-key-content:
+      description: OCI CLI key content
+      required: false
+  oci-cli-region:
+      description: OCI CLI region
+      required: false
   setup-aws:
     description: Setup AWS
     required: false
@@ -196,6 +215,16 @@ runs:
           tenant-id: ${{ inputs.azure-tenant-id }}
           subscription-id: ${{ inputs.azure-subscription-id }}
       if: ${{ inputs.setup-azure == 'true' && inputs.azure-client-id != '' }}
+
+    - name: Configure OCI credentials
+      uses: oracle-actions/configure-oci-cli@v1
+      with:
+          user: ${{ inputs.oci-cli-user }}
+          tenancy: ${{ inputs.oci-cli-tenancy }}
+          fingerprint: ${{ inputs.oci-cli-fingerprint }}
+          key_content: ${{ inputs.oci-cli-key-content }}
+          region: ${{ inputs.oci-cli-region }}
+      if: ${{ inputs.setup-oci == 'true' }}
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
