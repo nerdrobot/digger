@@ -7,20 +7,23 @@ inputs:
     description: Setup OCI
     required: false
     default: 'false'
-  oci-cli-user:
+  OCI_CLI_USER:
     description: OCI CLI user ocid
     required: false
-  oci-cli-tenancy:
+  OCI_CLI_TENANCY:
       description: OCI CLI tenancy ocid
       required: false
-  oci-cli-fingerprint:
+  OCI_CLI_FINGERPRINT:
       description: OCI CLI fingerprint
       required: false
-  oci-cli-key-content:
+  OCI_CLI_KEY_CONTENT:
       description: OCI CLI key content
       required: false
-  oci-cli-region:
+  OCI_CLI_REGION:
       description: OCI CLI region
+      required: false
+  OCI_AUTH_TOKEN:
+      description: OCI Auth Token
       required: false
   setup-aws:
     description: Setup AWS
@@ -219,11 +222,7 @@ runs:
     - name: Configure OCI credentials
       uses: oracle-actions/login-ocir@v1.2.1
       with:
-          user: ${{ inputs.oci-cli-user }}
-          tenancy: ${{ inputs.oci-cli-tenancy }}
-          fingerprint: ${{ inputs.oci-cli-fingerprint }}
-          key_content: ${{ inputs.oci-cli-key-content }}
-          region: ${{ inputs.oci-cli-region }}
+          auth_token: ${{ inputs.OCI_AUTH_TOKEN }}
       if: ${{ inputs.setup-oci == 'true' }}
 
     - name: Setup Terraform
