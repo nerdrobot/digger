@@ -217,7 +217,7 @@ runs:
       if: ${{ inputs.setup-azure == 'true' && inputs.azure-client-id != '' }}
 
     - name: Configure OCI credentials
-      uses: oracle-actions/configure-oci-cli@v1
+      uses: oracle-actions/login-ocir@v1.2.1
       with:
           user: ${{ inputs.oci-cli-user }}
           tenancy: ${{ inputs.oci-cli-tenancy }}
