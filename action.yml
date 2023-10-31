@@ -222,7 +222,6 @@ runs:
     - name: Configure OCI credentials
       uses: oracle-actions/login-ocir@v1.2.1
       with:
-          regionId: ${{ inputs.OCI_CLI_REGION}}
           auth_token: ${{ inputs.OCI_AUTH_TOKEN }}
       if: ${{ inputs.setup-oci == 'true' }}
 
