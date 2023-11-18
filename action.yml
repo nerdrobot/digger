@@ -25,7 +25,7 @@ inputs:
   OCI_AUTH_TOKEN:
       description: OCI Auth Token
       required: false
- setup-aws:
+  setup-aws:
     description: Setup AWS
     required: false
     default: 'false'
