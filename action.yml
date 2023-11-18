@@ -222,12 +222,7 @@ runs:
     - name: Configure OCI credentials
       uses: oracle-actions/login-ocir@v1.2.1
       with:
-          auth_token: ${{ inputs.OCI_AUTH_TOKEN }}
-          OCI_CLI_USER: ${{ inputs.OCI_CLI_USER }}
-          OCI_CLI_TENANCY: ${{ inputs.OCI_CLI_TENANCY }}
-          OCI_CLI_FINGERPRINT: ${{ inputs.OCI_CLI_FINGERPRINT }}
-          OCI_CLI_KEY_CONTENT: ${{ inputs.OCI_CLI_KEY_CONTENT }}
-          OCI_CLI_REGION: ${{ inputs.OCI_CLI_REGION }}     
+          auth_token: ${{ inputs.OCI_AUTH_TOKEN }}  
       if: ${{ inputs.setup-oci == 'true' }}
 
     - name: Setup Terraform
